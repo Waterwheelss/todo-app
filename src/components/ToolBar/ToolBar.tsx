@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import useClearCompleted from '../../hooks/useClearCompleted';
 import { useFilter } from '../../hooks/useFilter';
 import { RootState } from '../../rootReducer';
 import { ACTIVE, ALL, COMPLETED } from '../../slices/filterSlice';
@@ -8,6 +9,7 @@ import { Container, FilterListItem, FilterButton } from './style';
 export default function ToolBar() {
   const todoList = useSelector((state: RootState) => state.todoList);
   const [isActive, filterOnChange] = useFilter();
+  const clearCompleted = useClearCompleted();
 
   return(
     <Container>
@@ -23,9 +25,9 @@ export default function ToolBar() {
           <FilterButton active={isActive(COMPLETED)} onClick={() => filterOnChange(COMPLETED)}>Completed</FilterButton>
         </FilterListItem>
       </ul>
-      <div>
+      <FilterButton onClick={clearCompleted}>
         Clear Completed
-      </div>
+      </FilterButton>
     </Container>
   )
 }

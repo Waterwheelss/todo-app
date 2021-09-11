@@ -27,6 +27,9 @@ export const todoListSlice = createSlice({
         }
       }
     },
+    clearCompletedTodo: (state) => {
+      return state.filter(todo => todo.checked === false);
+    },
     toggleTodo: (state, action: PayloadAction<string>) => state.map(todo => {
       if (todo.id === action.payload) {
         return {
@@ -42,6 +45,7 @@ export const todoListSlice = createSlice({
 
 export const {
   addList,
+  clearCompletedTodo,
   toggleTodo,
 } = todoListSlice.actions;
 

@@ -1,7 +1,7 @@
 import { RootState } from "../rootReducer";
-import { Todo } from "../slices/todoListSlice";
+import { TodoType } from "../slices/todoListSlice";
 
-export default function getCompletedList(state: RootState): Array<Todo> {
+export default function getCompletedList(state: RootState): Array<TodoType> {
   const todoList = state.todoList;
   const completedList = todoList.filter(todo => todo.checked === true);
 

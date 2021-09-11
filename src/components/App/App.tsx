@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import { RootState } from '../../rootReducer';
 
-import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../../styles/theme';
 import { GlobalStyles } from '../../styles/GlobalStyles';
 import { HeaderWrapper, InputFormWrapper, ItemWrapper } from './style';
@@ -11,10 +14,11 @@ import AppContainer from '../AppContainer/AppContainer';
 import Banner from '../Banner/Banner';
 import Header from '../Header/Header';
 import InputForm from '../InputForm/InputForm';
-import ListItem from '../ListItem/ListItem';
+import Todo from '../Todo/Todo';
 import ToolBar from '../ToolBar/ToolBar';
 import { ACTIVE, ALL, COMPLETED } from '../../slices/filterSlice';
-import { Todo } from '../../slices/todoListSlice';
+import { TodoType } from '../../slices/todoListSlice';
+import appendIndexToTodo from '../../helper/appendIndexToTodo';
 
 export default function App() {
   const todoList = useSelector((state: RootState) => state.todoList);
@@ -22,11 +26,12 @@ export default function App() {
   const filter = useSelector((state: RootState) => state.filter);
 
   const renderList = () => {
-    let filteredList: Array<Todo> = []
-    
+
+    //Append index information on every todo item.
+    let filteredList: Array<TodoType> = [...todoList];
+
     switch (filter.type) {
       case ALL:
-        filteredList = [...todoList];
         break;
       case COMPLETED:
         filteredList = todoList.filter(todo => todo.checked === true);
@@ -36,8 +41,8 @@ export default function App() {
         break;
     }
 
-    return filteredList.map(todo => (
-      <ListItem key={todo.id} todo={todo} />
+    return filteredList.map((todo) => (
+      <Todo key={todo.id} todo={todo} />
     ))
   }
 
@@ -53,7 +58,11 @@ export default function App() {
           <InputForm />
         </InputFormWrapper>
         <ItemWrapper>
-          <ul>{renderList()}</ul>
+          <DndProvider backend={HTML5Backend}>
+            <ul>
+              {renderList()}
+            </ul>
+          </DndProvider>
           <ToolBar />
         </ItemWrapper>
       </AppContainer>

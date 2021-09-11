@@ -13,16 +13,33 @@ import Header from '../Header/Header';
 import InputForm from '../InputForm/InputForm';
 import ListItem from '../ListItem/ListItem';
 import ToolBar from '../ToolBar/ToolBar';
+import { ACTIVE, ALL, COMPLETED } from '../../slices/filterSlice';
+import { Todo } from '../../slices/todoListSlice';
 
 export default function App() {
   const todoList = useSelector((state: RootState) => state.todoList);
   const theme = useSelector((state: RootState) => state.theme);
+  const filter = useSelector((state: RootState) => state.filter);
 
-  const renderList = () => todoList.map(todo => (
-    <ul>
+  const renderList = () => {
+    let filteredList: Array<Todo> = []
+    
+    switch (filter.type) {
+      case ALL:
+        filteredList = [...todoList];
+        break;
+      case COMPLETED:
+        filteredList = todoList.filter(todo => todo.checked === true);
+        break;
+      case ACTIVE:
+        filteredList = todoList.filter(todo => todo.checked === false);
+        break;
+    }
+
+    return filteredList.map(todo => (
       <ListItem key={todo.id} todo={todo} />
-    </ul>
-  ))
+    ))
+  }
 
   return (
     <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
@@ -36,7 +53,7 @@ export default function App() {
           <InputForm />
         </InputFormWrapper>
         <ItemWrapper>
-          {renderList()}
+          <ul>{renderList()}</ul>
           <ToolBar />
         </ItemWrapper>
       </AppContainer>

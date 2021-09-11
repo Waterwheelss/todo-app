@@ -4,6 +4,7 @@ export const lightColors = {
   lightGrayishBlue: 'hsl(233, 11%, 84%)',
   darkGrayishBlue: 'hsl(236, 9%, 61%)',
   veryDarkGrayishBlue: 'hsl(235, 19%, 35%)',
+  brightBlue: 'hsl(220, 98%, 61%)',
 }
 
 export const darkColors = {
@@ -13,4 +14,5 @@ export const darkColors = {
   lightGrayishBlueHover: 'hsl(236, 33%, 92%)',
   darkGrayishBlue: 'hsl(234, 11%, 52%)',
   veryDarkGrayishBlue: 'hsl(233, 14%, 35%)',
+  brightBlue: 'hsl(220, 98%, 61%)',
 }

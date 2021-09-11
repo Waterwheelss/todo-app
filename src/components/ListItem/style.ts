@@ -30,7 +30,7 @@ type TextProps = {
 }
 
 export const Text = styled.span<TextProps>`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textPrimary};
 
   ${({checked}) => checked && `
     text-decoration-line: line-through;

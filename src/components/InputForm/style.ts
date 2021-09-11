@@ -24,7 +24,7 @@ export const IconContainer = styled.div`
 export const Input = styled.input`
   background-color: transparent;
   border: none;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textPrimary};
   font-family: 'Josefin Sans';
   font-size: 18px;
 `

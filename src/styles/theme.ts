@@ -4,7 +4,9 @@ export type ThemeType = typeof darkTheme;
 
 export const darkTheme = {
   body: darkColors.veryDarkBlue,
-  text: '#fff',
+  textPrimary: '#fff',
+  textSecondary: darkColors.darkGrayishBlue,
+  textHover: darkColors.brightBlue,
   listItem: darkColors.veryDarkDesaturatedBlue,
   listItemBorder: darkColors.veryDarkGrayishBlue,
   checkBoxBorder: darkColors.veryDarkGrayishBlue,
@@ -12,7 +14,9 @@ export const darkTheme = {
 
 export const lightTheme: ThemeType = {
   body: lightColors.veryLightGray,
-  text: darkColors.darkGrayishBlue,
+  textPrimary: darkColors.darkGrayishBlue,
+  textSecondary: darkColors.veryDarkDesaturatedBlue,
+  textHover: darkColors.brightBlue,
   listItem: '#fff',
   listItemBorder: darkColors.darkGrayishBlue,
   checkBoxBorder: lightColors.veryDarkGrayishBlue,

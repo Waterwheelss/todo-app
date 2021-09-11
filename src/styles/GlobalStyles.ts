@@ -52,7 +52,7 @@ export const ResetStyles = createGlobalStyle`
 export const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.body};
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.textPrimary};
     font-size: 18px;
     font-family: 'Josefin Sans';
   }
